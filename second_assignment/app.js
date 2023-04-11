@@ -64,7 +64,24 @@ function saveObjectToLocalStorage(key, obj) {
   localStorage.setItem(key, JSON.stringify(obj));
 }
 
-//Task# 07
+// Task# 07
 function getObjetFromLocalStorage(key) {
-  return localStorage.getItem(key);
+  return JSON.parse(localStorage.getItem(key));
+}
+
+// Task# 08
+
+function saveAndReterieveObject(obj) {
+  const keys = Object.keys(obj);
+  for (let i = 0; i < keys.length; i++) {
+    localStorage.setItem(keys[i], obj[keys[i]]);
+  }
+
+  let newObj = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    newObj[key] = value;
+  }
+  return newObj;
 }
